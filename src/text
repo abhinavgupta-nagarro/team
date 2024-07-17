@@ -1,0 +1,17 @@
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import ArticleList from "./ArticleList";
+
+test("renders article titles", () => {
+  render(
+    <MemoryRouter>
+      <ArticleList />
+    </MemoryRouter>,
+  );
+
+  const articleTitles = screen
+    .getAllByRole("link")
+    .map((link) => link.textContent);
+  expect(articleTitles).toEqual(["Article 1", "Article 2", "Article 3"]);
+});
